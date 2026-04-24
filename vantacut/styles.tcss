@@ -1,0 +1,91 @@
+Screen {
+    background: $background;
+    color: $foreground;
+}
+
+#root {
+    layout: vertical;
+    background: $background;
+}
+
+#workspace {
+    height: 1fr;
+    background: $background;
+}
+
+.pane {
+    border: round #39506c;
+    margin: 0;
+    background: $panel;
+}
+
+.pane:focus-within {
+    border: round #93d4ff;
+}
+
+#left-pane,
+#right-pane {
+    min-width: 24;
+}
+
+#center-pane {
+    min-width: 50;
+    background: $surface;
+}
+
+.panel-title {
+    height: 1;
+    color: $accent;
+    content-align: left middle;
+}
+
+#preview-strip {
+    height: 18;
+    padding: 0 1;
+    margin: 0 1;
+    border: round #39506c;
+    background: #202d3d;
+    overflow: hidden hidden;
+}
+
+#transport {
+    height: 3;
+    padding: 0 1;
+    margin: 0 1;
+}
+
+#transport Button {
+    margin-right: 1;
+}
+
+TabbedContent {
+    height: 1fr;
+}
+
+Tabs {
+    background: #202d3d;
+    border-bottom: solid #39506c;
+}
+
+TabPane {
+    padding: 0;
+}
+
+Button {
+    border: none;
+}
+
+Input,
+OptionList,
+DataTable,
+TextArea {
+    border: round #39506c;
+    background: $surface;
+}
+
+Input:focus,
+OptionList:focus,
+DataTable:focus,
+TextArea:focus {
+    border: round #93d4ff;
+}

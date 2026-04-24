@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vantacut"
+version = "0.1.0"
+description = "A desktop-like TUI nonlinear editor built with Textual."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+  "textual>=8.2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=9.0",
+]
+
+[project.scripts]
+vantacut = "vantacut.__main__:main"
+
+[tool.pytest.ini_options]
+pythonpath = [".", ".deps"]
+testpaths = ["tests"]
+

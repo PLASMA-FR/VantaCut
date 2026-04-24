@@ -1,0 +1,115 @@
+{
+  "created_at": "2026-04-13T00:00:00+00:00",
+  "updated_at": "2026-04-13T00:00:00+00:00",
+  "id": "project-sample0001",
+  "name": "Launch Teaser",
+  "path": null,
+  "settings": {
+    "fps": 30,
+    "height": 1080,
+    "sample_rate": 48000,
+    "width": 1920
+  },
+  "assets": [
+    {
+      "duration_ticks": 18000,
+      "id": "asset-intro0001",
+      "kind": "video",
+      "label": "interview.mp4",
+      "metadata": {
+        "fps": 29.97,
+        "resolution": "3840x2160"
+      },
+      "path": "media/interview.mp4"
+    },
+    {
+      "duration_ticks": 11500,
+      "id": "asset-broll0001",
+      "kind": "video",
+      "label": "city-broll.mp4",
+      "metadata": {
+        "fps": 25,
+        "resolution": "1920x1080"
+      },
+      "path": "media/city-broll.mp4"
+    },
+    {
+      "duration_ticks": 22000,
+      "id": "asset-audio0001",
+      "kind": "audio",
+      "label": "score.wav",
+      "metadata": {
+        "channels": 2,
+        "sample_rate": 48000
+      },
+      "path": "media/score.wav"
+    }
+  ],
+  "markers": [
+    {
+      "id": "marker-1",
+      "label": "In",
+      "time": 0
+    },
+    {
+      "id": "marker-2",
+      "label": "B-roll swap",
+      "time": 8400
+    }
+  ],
+  "subtitles": [
+    {
+      "end": 2500,
+      "id": "cue-1",
+      "start": 400,
+      "text": "The city wakes up before dawn."
+    }
+  ],
+  "tracks": [
+    {
+      "clips": [
+        {
+          "asset_id": "asset-intro0001",
+          "duration": 8000,
+          "id": "clip-1",
+          "linked": true,
+          "muted": false,
+          "selected": true,
+          "source_in": 0,
+          "source_out": null,
+          "start": 0,
+          "track_id": "track-video1",
+          "transform": {
+            "crop_height": 0,
+            "crop_width": 0,
+            "crop_x": 0,
+            "crop_y": 0,
+            "opacity": 1.0,
+            "position_x": 0.0,
+            "position_y": 0.0,
+            "rotation": 0.0,
+            "scale_mode": "fit"
+          }
+        }
+      ],
+      "id": "track-video1",
+      "index": 0,
+      "kind": "video",
+      "name": "Video 1"
+    },
+    {
+      "clips": [],
+      "id": "track-audio1",
+      "index": 1,
+      "kind": "audio",
+      "name": "Audio 1"
+    },
+    {
+      "clips": [],
+      "id": "track-subtitle1",
+      "index": 2,
+      "kind": "subtitle",
+      "name": "Subtitles"
+    }
+  ]
+}

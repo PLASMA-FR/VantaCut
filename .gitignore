@@ -1,0 +1,12 @@
+.deps/
+.venv/
+.vantacut-state/
+.codex
+__pycache__/
+.pytest_cache/
+screen*.png
+*.pyc
+*.pyo
+*.autosave.json
+*.recovery.json
+*.log
