@@ -10,6 +10,13 @@ from vantacut.models.subtitles import SubtitleCue
 from vantacut.models.timeline import Marker, TimelineClip, TimelineTrack, TrackKind
 
 
+def _coerce_int(value: Any, default: int) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
 @dataclass(slots=True)
 class ProjectSettings:
     width: int = 1920
@@ -28,10 +35,13 @@ class ProjectSettings:
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "ProjectSettings":
         return cls(
-            width=payload.get("width", 1920),
-            height=payload.get("height", 1080),
-            fps=payload.get("fps", 30),
-            sample_rate=payload.get("sample_rate", 48_000),
+            width=max(1, _coerce_int(payload.get("width", 1920), default=1920)),
+            height=max(1, _coerce_int(payload.get("height", 1080), default=1080)),
+            fps=max(1, _coerce_int(payload.get("fps", 30), default=30)),
+            sample_rate=max(
+                1,
+                _coerce_int(payload.get("sample_rate", 48_000), default=48_000),
+            ),
         )
 
 
