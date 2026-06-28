@@ -6,6 +6,20 @@ from typing import Any
 from uuid import uuid4
 
 
+def _coerce_int(value: Any, default: int = 0) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _coerce_float(value: Any, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
 class TrackKind(StrEnum):
     VIDEO = "video"
     AUDIO = "audio"
@@ -45,16 +59,22 @@ class TransformState:
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "TransformState":
+        scale_mode_raw = payload.get("scale_mode", ScaleMode.FIT.value)
+        try:
+            scale_mode = ScaleMode(scale_mode_raw)
+        except ValueError:
+            scale_mode = ScaleMode.FIT
+
         return cls(
-            crop_x=payload.get("crop_x", 0),
-            crop_y=payload.get("crop_y", 0),
-            crop_width=payload.get("crop_width", 0),
-            crop_height=payload.get("crop_height", 0),
-            scale_mode=ScaleMode(payload.get("scale_mode", ScaleMode.FIT.value)),
-            position_x=payload.get("position_x", 0.0),
-            position_y=payload.get("position_y", 0.0),
-            rotation=payload.get("rotation", 0.0),
-            opacity=payload.get("opacity", 1.0),
+            crop_x=_coerce_int(payload.get("crop_x", 0), default=0),
+            crop_y=_coerce_int(payload.get("crop_y", 0), default=0),
+            crop_width=max(0, _coerce_int(payload.get("crop_width", 0), default=0)),
+            crop_height=max(0, _coerce_int(payload.get("crop_height", 0), default=0)),
+            scale_mode=scale_mode,
+            position_x=_coerce_float(payload.get("position_x", 0.0), default=0.0),
+            position_y=_coerce_float(payload.get("position_y", 0.0), default=0.0),
+            rotation=_coerce_float(payload.get("rotation", 0.0), default=0.0),
+            opacity=min(1.0, max(0.0, _coerce_float(payload.get("opacity", 1.0), default=1.0))),
         )
 
 
@@ -148,4 +168,3 @@ class Marker:
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "Marker":
         return cls(id=payload["id"], time=payload["time"], label=payload["label"])
-
